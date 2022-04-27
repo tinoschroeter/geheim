@@ -31,7 +31,6 @@ app.post("/geheim", (req, res) => {
 
   const uuid = short.generate().toLowerCase();
   db.prepare(`INSERT INTO ${tableName} VALUES (?,?)`).run(uuid, text);
-  const add = db.prepare(`SELECT * FROM ${tableName}`).all();
 
   res.render("index", { form: false, message: `${url}/geheim/${uuid}` });
 });
