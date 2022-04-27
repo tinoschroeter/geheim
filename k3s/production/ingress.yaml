@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: geheim-ingress
+spec:
+  rules:
+  - host: geheim.tino.sh
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: geheim-app-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - geheim.tino.sh
+    secretName: geheim-tino-sh-tls

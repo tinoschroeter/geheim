@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: geheim-config
+  namespace: geheim
+data:
+  DBFILE: "/opt/data.sql"
+  URL: "https://geheim.tino.sh"

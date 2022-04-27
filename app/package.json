@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^7.5.1",
+    "ejs": "^3.1.7",
+    "express": "^4.18.0",
+    "morgan": "^1.10.0",
+    "short-uuid": "^4.2.0"
+  }
+}

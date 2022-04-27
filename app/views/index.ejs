@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Geheim</title>
+  </head>
+  <body style="background-color: #302f2f">
+    <div
+      style="
+        background-color: white;
+        position: absolute;
+        left: 30%;
+        top: 30%;
+        padding: 30px;
+        margin: 0 auto;
+        border: 7px solid red;
+      "
+    >
+     <% if (form) { %>
+      <form action="/geheim" method="POST">
+        <label for="text">Passwort oder geheime Botschaft: </label>
+        <input autocomplete="off" autofocus type="text" id="text" name="text" />
+        <button>generieren</button>
+      </form>
+      <% } else { %>
+        <h3><%= message %></h3>
+      <% } %>
+    </div>
+  </body>
+</html>

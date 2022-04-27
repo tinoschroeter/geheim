@@ -1,0 +1,5 @@
+namespace: geheim
+resources:
+  - service.yml
+  - app.yaml
+

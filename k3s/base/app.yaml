@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: geheim-backend
+  name: geheim-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: geheim-backend
+  template:
+    metadata:
+      labels:
+        app: geheim-backend
+    spec:
+      containers:
+      - name: geheim-backend
+        image: registry.tino.sh/geheim-app
+        volumeMounts:
+        - name: db-file
+          mountPath: /opt
+        env:
+          - name: DBFILE
+            valueFrom:
+              configMapKeyRef:
+                name: geheim-config
+                key: DBFILE
+          - name: URL
+            valueFrom:
+              configMapKeyRef:
+                name: geheim-config
+                key: URL
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "30m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            failureThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            failureThreshold: 2
+      volumes:
+      - name: db-file
+        persistentVolumeClaim:
+          claimName: pvc-db-file

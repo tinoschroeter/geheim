@@ -1,0 +1,6 @@
+namespace: geheim
+bases:
+  - ../base
+  - config.yaml
+  - pvc.yaml
+  - ingress.yaml
