@@ -34,7 +34,7 @@ app.post("/", (req, res) => {
   const uuid = short.generate().toLowerCase();
   db.prepare(`INSERT INTO ${tableName} VALUES (?,?)`).run(uuid, text);
 
-  res.render("index", { form: false, message: `${url}/${uuid}` });
+  res.render("index", { form: false, message: `${url}/${uuid}`, rows: 1 });
 });
 
 app.get("/:id", (req, res) => {
@@ -46,7 +46,7 @@ app.get("/:id", (req, res) => {
       if (!result) return res.redirect("/");
 
       db.prepare("DELETE FROM geheim WHERE uuid = ?").run(id);
-      res.render("index", { form: false, message: result.message });
+      res.render("index", { form: false, message: result.message, rows: 4 });
     }
   } else {
     res.render("index", { form: true });
