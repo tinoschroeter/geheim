@@ -45,6 +45,8 @@
           />
           <button>generieren</button>
         </form>
+        <% } else if (approve) { %>
+        <button onclick="window.location.href = '<%= link %>';">Text anzeigen</button>
         <% } else { %>
         <textarea rows="<%= rows %>" cols="60"><%= message %></textarea>
         <% } %>
